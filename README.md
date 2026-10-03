@@ -1,4 +1,4 @@
-# Opinionated Agent skills
+# Agent Skills
 
 ## New project with Beads
 
