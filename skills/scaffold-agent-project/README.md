@@ -12,7 +12,7 @@ Creates:
 
 It never overwrites existing files.
 
-## Use it
+## What it uses
 
 Preview:
 
@@ -22,15 +22,17 @@ Create a Beads-managed layout:
 
 `python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --project-name "My Project"`
 
-Also initialise Beads without generated `AGENTS.md` guidance or Git hooks:
+Create the complete personal baseline, including local-only Beads without generated `AGENTS.md` guidance or Git hooks:
 
-`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --project-name "My Project" --initialize-beads`
+`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --project-name "My Project" --with-beads`
+
+`--with-beads` delegates to `setup-beads`; use `setup-beads` directly when adding Beads to an established repository. `--initialize-beads` remains a compatibility alias.
 
 Create without Beads:
 
 `python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --tracker none`
 
-## Edit after scaffolding
+## Customize after scaffolding
 
 1. `AGENTS.md`
    - Set install, check, and test commands.

@@ -26,13 +26,12 @@ python3 .agents/skills/scaffold-agent-project/scripts/scaffold.py \
 
 For a new Beads-managed project, omit `--tracker`; it defaults to `beads`.
 Use `--tracker none` when the repository has no durable tracker yet. Add
-`--initialize-beads` only when the user explicitly wants Beads initialized.
-It uses the same safe default as `setup-beads`: no generated Beads guidance
-and no Git hooks.
+`--with-beads` when the user wants the complete personal baseline in one step.
+After scaffolding, it delegates local Beads initialization to `setup-beads`;
+that skill remains the single owner of Beads safety and hook policy.
 
-The script refuses to overwrite files. After it succeeds, replace the command
-placeholders in `AGENTS.md`, add domain terms only when they settle, and add a
-specification when real scope exists.
+After it succeeds, stop. Do not replace placeholders or modify generated files unless the user explicitly asks
+for a follow-up customization step.
 
 ## Resulting layout
 

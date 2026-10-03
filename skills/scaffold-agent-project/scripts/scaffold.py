@@ -11,6 +11,7 @@ from pathlib import Path
 
 
 TEMPLATE_ROOT = Path(__file__).resolve().parents[1] / "assets"
+SETUP_BEADS_SCRIPT = Path(__file__).resolve().parents[2] / "setup-beads" / "scripts" / "setup_beads.py"
 TARGETS = {
     "AGENTS.md": "AGENTS.md.template",
     "CONTEXT.md": "CONTEXT.md.template",
@@ -26,10 +27,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--project-name", help="Display name; defaults to the target directory name.")
     parser.add_argument("--tracker", choices=("beads", "none"), default="beads")
     parser.add_argument("--dry-run", action="store_true", help="Show planned files without writing them.")
-    parser.add_argument(
-        "--initialize-beads",
+    beads = parser.add_mutually_exclusive_group()
+    beads.add_argument(
+        "--with-beads",
         action="store_true",
-        help="Run Beads init without generated AGENTS.md text or Git hooks. Requires --tracker beads.",
+        help="After scaffolding, run the standalone local Beads setup. Requires --tracker beads.",
+    )
+    beads.add_argument(
+        "--initialize-beads",
+        dest="with_beads",
+        action="store_true",
+        help=argparse.SUPPRESS,
     )
     return parser.parse_args()
 
@@ -67,8 +75,14 @@ def main() -> int:
     if not target.is_dir():
         print(f"Target is not a directory: {target}", file=sys.stderr)
         return 2
-    if args.initialize_beads and args.tracker != "beads":
-        print("--initialize-beads requires --tracker beads.", file=sys.stderr)
+    if args.with_beads and args.tracker != "beads":
+        print("--with-beads requires --tracker beads.", file=sys.stderr)
+        return 2
+    if args.with_beads and not SETUP_BEADS_SCRIPT.is_file():
+        print(f"The standalone Beads setup script was not found: {SETUP_BEADS_SCRIPT}", file=sys.stderr)
+        return 2
+    if args.with_beads and shutil.which("bd") is None:
+        print("'bd' was not found; install Beads before using --with-beads.", file=sys.stderr)
         return 2
 
     planned = [target / relative for relative in TARGETS]
@@ -85,8 +99,8 @@ def main() -> int:
         print(f"Would scaffold {target} with tracker={args.tracker}:")
         for path in planned:
             print(f"  {path.relative_to(target)}")
-        if args.initialize_beads:
-            print("  then run: bd init --skip-agents --skip-hooks --non-interactive")
+        if args.with_beads:
+            print(f"  then delegate to: {sys.executable} {SETUP_BEADS_SCRIPT} --target {target}")
         return 0
 
     for relative, template_name in TARGETS.items():
@@ -95,15 +109,13 @@ def main() -> int:
         destination.write_text(render(TEMPLATE_ROOT / template_name, values), encoding="utf-8")
         print(f"Created {destination.relative_to(target)}")
 
-    if args.initialize_beads:
-        if shutil.which("bd") is None:
-            print("Scaffolded files, but 'bd' was not found; Beads was not initialized.", file=sys.stderr)
-            return 1
-        subprocess.run(
-            ["bd", "init", "--skip-agents", "--skip-hooks", "--non-interactive"],
-            cwd=target,
-            check=True,
+    if args.with_beads:
+        result = subprocess.run(
+            [sys.executable, str(SETUP_BEADS_SCRIPT), "--target", str(target)],
+            check=False,
         )
+        if result.returncode:
+            return result.returncode
     return 0
 
 
