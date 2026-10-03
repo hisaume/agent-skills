@@ -1,0 +1,34 @@
+---
+name: application-delivery
+description: Plan and deliver durable changes in this application repository. Use when shaping approved work, claiming tracked work, implementing a vertical slice, or preparing handoff; do not use for an informational or read-only inspection.
+---
+
+# Application delivery
+
+Use this repository's domain language, specifications, and delivery authority.
+This workflow coordinates durable work; focused skills retain ownership of
+their individual procedures.
+
+## Read what the task needs
+
+1. Read `AGENTS.md`.
+2. Read `CONTEXT.md` when domain vocabulary or invariants matter.
+3. Read relevant ADRs and `docs/specs/README.md` before changing consequential
+   behaviour.
+4. {{TRACKER_ROUTE}}
+
+## Route the work
+
+- Clarify consequential product or domain uncertainty before implementation.
+- Turn approved scope into a specification and independently valuable vertical
+  slices when those artifacts do not exist.
+- Implement behavioural changes test-first at the relevant public boundary.
+- Run the authoritative validation command before handoff.
+
+## Boundaries
+
+- Keep durable state in {{TRACKER_LABEL}}; temporary execution notes are not a
+  project tracker.
+- A pull request is not completion unless this repository's policy says the
+  required integration gates have passed.
+- This skill never expands the authority stated in `AGENTS.md`.

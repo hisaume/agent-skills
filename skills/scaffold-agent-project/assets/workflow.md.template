@@ -1,0 +1,12 @@
+# {{WORKFLOW_TITLE}}
+
+## Start durable work
+
+{{TRACKER_STEPS}}
+
+## Deliver work
+
+1. Run the repository's authoritative validation command.
+2. Follow the commit, pull-request, and synchronization authority in
+   `AGENTS.md`.
+3. Hand off changed files, validation, tracker state, and remaining work.

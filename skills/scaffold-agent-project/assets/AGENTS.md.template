@@ -1,0 +1,23 @@
+# {{PROJECT_NAME}} agent guide
+
+## Sources of truth
+
+- Use the terminology and domain invariants in `CONTEXT.md` when they apply.
+- Read relevant ADRs under `docs/adr/` and the specification index at
+  `docs/specs/README.md` before changing consequential behaviour.
+- For durable product or engineering work, use the `application-delivery` skill.
+
+## Commands
+
+- Install: _Set the project installation command._
+- Check: _Set the authoritative validation command._
+- Test: _Set the focused test command, if distinct._
+
+## Project invariants
+
+- _Record only non-obvious constraints that should apply to most changes._
+
+## Delivery authority
+
+- {{TRACKER_NOTE}}
+- _State the repository's commit, push, pull-request, and tracker-sync policy._
