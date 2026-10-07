@@ -138,6 +138,7 @@ Create `tsconfig.build.json` extending the main configuration.
 
 Configure the build configuration to:
 
+- Override the inherited `noEmit` setting to `false`.
 - Compile only application files under `src/`.
 - Use `src/` as `rootDir`.
 - Emit JavaScript to `dist/`.
