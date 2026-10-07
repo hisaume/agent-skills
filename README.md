@@ -27,3 +27,13 @@ $scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.
 ```
 
 Use `pnpm check` for the canonical quality check. Excludes frameworks, libraries, and existing configured Node projects.
+
+## New Python application
+
+Plain application with stable CPython via uv, packaged `src/` layout, linting, formatting, tests, and VS Code debugging:
+
+```
+$scaffold-python Scaffold this directory as a Python application.
+```
+
+Use `./check.sh` for the canonical quality check. Excludes frameworks, publishing-focused libraries, and existing configured Python projects.
