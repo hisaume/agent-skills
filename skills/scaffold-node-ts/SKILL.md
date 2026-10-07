@@ -1,21 +1,13 @@
 ---
 name: scaffold-node-ts
-description: >
-  Scaffold a new plain runnable Node.js TypeScript application in an existing
-  directory using nvm, pnpm, ESM, TypeScript, tsx, ESLint, Prettier, Vitest,
-  source maps, VS Code-compatible debugging, and Git-aware initialization.
-  Use for new non-framework Node/TypeScript applications. Do not use for
-  libraries/packages, React or Vite apps, monorepos, or existing configured
-  Node projects.
+description: Scaffold a new plain runnable Node.js TypeScript application in an already-created directory. Use for new non-framework Node/TypeScript applications; do not use for libraries/packages, React or Vite apps, monorepos/workspaces, or existing configured Node projects.
 ---
 
 # Scaffold Node TypeScript
 
-Create a minimal, runnable, testable, and debuggable Node.js TypeScript
-application.
+Create a minimal, runnable, testable, and debuggable Node.js TypeScript application.
 
-Keep the scaffold generic. Do not add project-specific architecture or
-tooling beyond the baseline defined here.
+Keep the scaffold generic. Do not add project-specific architecture or tooling beyond the baseline defined here.
 
 ## Inspect first
 
@@ -24,10 +16,8 @@ tooling beyond the baseline defined here.
 - Inspect the directory before modifying anything.
 - Preserve existing unrelated files.
 - Never overwrite an existing file without explicit approval.
-- If `package.json` already exists, stop and report that the directory is
-  already a Node project.
-- If substantial existing TypeScript or Node configuration is present, stop
-  rather than attempting to merge or replace it.
+- If `package.json` already exists, stop and report that the directory is already a Node project.
+- If substantial existing TypeScript or Node configuration is present, stop rather than attempting to merge or replace it.
 
 ## Required tools
 
@@ -36,8 +26,7 @@ tooling beyond the baseline defined here.
 - Use Git when available.
 - Do not install or replace system-wide package managers.
 - Do not run `pnpm self-update`.
-- If `nvm` or `pnpm` is unavailable in the current shell, stop and report the
-  missing requirement.
+- If `nvm` or `pnpm` is unavailable in the current shell, stop and report the missing requirement.
 
 ## Node.js
 
@@ -53,7 +42,7 @@ tooling beyond the baseline defined here.
 - Use the installed pnpm version.
 - Record its exact version in `package.json` using the `packageManager` field.
 - Do not silently upgrade pnpm.
-- Commit `pnpm-lock.yaml` as part of the project.
+- Generate and retain `pnpm-lock.yaml`; it is intended to be committed.
 
 ## Git
 
@@ -170,8 +159,7 @@ Create:
 src/index.ts
 ```
 
-Provide minimal executable starter code that visibly confirms the application
-runs.
+Provide minimal executable starter code that visibly confirms the application runs.
 
 Keep it intentionally trivial. Do not invent application architecture.
 
@@ -227,8 +215,7 @@ Configure:
 - Node.js globals.
 - TypeScript source and test files.
 - `dist/` and `coverage/` as ignored output.
-- `eslint-config-prettier` last so formatting rules do not conflict with
-  Prettier.
+- `eslint-config-prettier` last so formatting rules do not conflict with Prettier.
 
 Do not enable type-aware linting by default.
 
@@ -245,8 +232,7 @@ Create:
 .prettierignore
 ```
 
-Use an empty JSON object in `.prettierrc.json` to make use of Prettier
-explicit without adding personal style overrides.
+Use an empty JSON object in `.prettierrc.json` to make use of Prettier explicit without adding personal style overrides.
 
 Ignore generated or dependency content such as:
 
@@ -272,13 +258,11 @@ Include at least:
 - `*.log`
 - `.DS_Store`
 
-Do not ignore `.vscode/`, because this scaffold provides a project debug
-configuration.
+Do not ignore `.vscode/`, because this scaffold provides a project debug configuration.
 
 ## VS Code-compatible debugging
 
-This is an editor-specific convenience layer. Keep it isolated from the core
-project configuration so it can be removed easily later.
+This is an editor-specific convenience layer. Keep it isolated from the core project configuration so it can be removed easily later.
 
 Create:
 
@@ -295,15 +279,11 @@ Configure a Node launch target that:
 - Skips Node internal source while stepping.
 - Uses source maps where applicable.
 
-Do not create editor settings, extension recommendations, or other VS Code
-configuration.
+Do not create editor settings, extension recommendations, or other VS Code configuration.
 
 If `.vscode/launch.json` already exists, do not overwrite it.
 
-`tsx` officially supports running TypeScript through
-`node --import tsx`, which makes this suitable for Node-based debugger launch
-configurations. VS Code's Node debugger supports `runtimeArgs` and TypeScript
-source maps.
+`tsx` officially supports running TypeScript through `node --import tsx`, which makes this suitable for Node-based debugger launch configurations. VS Code's Node debugger supports `runtimeArgs` and TypeScript source maps.
 
 ## Expected project shape
 
@@ -328,8 +308,7 @@ After scaffolding, expect approximately:
     └── index.test.ts
 ```
 
-A `.git/` directory will also exist when this directory was not already
-contained within a Git repository.
+A `.git/` directory will also exist when this directory was not already contained within a Git repository.
 
 ## Verification
 
