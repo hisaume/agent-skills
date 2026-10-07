@@ -2,15 +2,23 @@
 
 ## What it does
 
-Creates:
+Creates 3 broad separation of concerns, divided into 5 files:
 
-- `AGENTS.md`
-- `CONTEXT.md`
-- `docs/specs/README.md`
-- `.agents/skills/application-delivery/SKILL.md`
-- `.agents/skills/application-delivery/references/workflow.md`
+**1. PROJECT PROMPT**
 
-It never overwrites existing files.
+- `AGENTS.md` — repository-wide agent guidance, including sources of truth and delivery policy.
+- `CONTEXT.md` — shared domain vocabulary, assumptions, and invariants.
+
+**2. WORKFLOW PROMPT**
+
+- `.agents/skills/application-delivery/SKILL.md` — instructions for planning and delivering durable application changes.
+- `.agents/skills/application-delivery/references/workflow.md` — detailed workflow used by the application-delivery skill.
+
+**3. APPLICATION DOCUMENTATION**
+
+- `docs/specs/README.md` — index for the software behavioral specifications (e.g design, architecture, and API).
+
+See also: [layout reference](references/layout.md).
 
 ## What it uses
 

@@ -1,4 +1,4 @@
-# Standard project layout
+# Standard project layout intention
 
 ```text
 project/
