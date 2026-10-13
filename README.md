@@ -1,39 +1,51 @@
-# Agent Skills
+# Reusable Agent Skills
 
-## New project with Beads
+Intended to live in `~/.agents/skills/` and can be invoked from compatible coding agents using `$skill-name`. Individual projects generally do not need copies of these skills.
 
-Standard agent-guidance layout + local-only Beads setup:
+## Project setup
 
-```
-$scaffold-agent-project Scaffold this project with Beads.
-```
+**New project with Beads**
 
-## Add Beads to an existing project
+`$scaffold-agent-project Scaffold this project with Beads.`
 
-Note: Beads initializes git if it is not already a git repository.
+Creates project guidance, domain context, specification indexing, and a local application-delivery workflow.
 
-```
-$setup-beads Set up Beads for this project.
-```
+**Add Beads to an existing project**
 
-Use `--mode shared` only when `.beads/` should be repository-managed.
+`$setup-beads Set up Beads for this project.`
 
-## New Node.js TypeScript application
+Beads initializes Git if necessary. Use `--mode shared` only when `.beads/` should be repository-managed.
 
-Plain application with Node LTS via nvm, pnpm, ESM, linting, formatting, tests, and VS Code debugging:
+## Application scaffolding
 
-```
-$scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.
-```
+**Node.js / TypeScript**
 
-Use `pnpm check` for the canonical quality check. Excludes frameworks, libraries, and existing configured Node projects.
+`$scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.`
 
-## New Python application
+Node LTS, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugging. Run `pnpm check` for validation.
 
-Plain application with stable CPython via uv, packaged `src/` layout, linting, formatting, tests, and VS Code debugging:
+**Python**
 
-```
-$scaffold-python Scaffold this directory as a Python application.
-```
+`$scaffold-python Scaffold this directory as a Python application.`
 
-Use `./check.sh` for the canonical quality check. Excludes frameworks, publishing-focused libraries, and existing configured Python projects.
+CPython via uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. Run `./check.sh` for validation.
+
+Both scaffolds target plain applications rather than framework-specific projects.
+
+## Quality analysis
+
+**Edge-case discovery and reconciliation**
+
+- Defines two distinct modes of operation: discovery and reconciliation.
+
+Discovery mode: `$edge-case-analysis Discover edge cases in this feature before specification.`
+
+Reconciliation mode: `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
+
+Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
+
+## Conventions
+
+- `~/.agents/AGENTS.md` holds shared cross-project guidance. Agent-specific configuration is required to load it.
+- Each skill's `SKILL.md` defines its behaviour; its `README.md` provides usage guidance.
+- Global skills stay in this library. Project-specific documentation and intentionally generated workflows remain in their respective repositories.
