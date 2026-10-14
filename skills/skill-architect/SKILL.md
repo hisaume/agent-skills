@@ -96,14 +96,28 @@ correctness, safety, repeatability, usability, or maintenance cost.
    - **Improve now:** Specific defects, ambiguity, duplication, or hygiene
      issues with material consequences.
    - **Defer:** Optional complexity without current evidence of value.
-4. Choose the least disruptive outcome: **no change**, **focused edits**, or
+4. Synthesize findings before proposing changes. When several
+   improvements interact, look for a coherent design that
+   addresses them together rather than independently:
+   - Identify shared responsibilities scattered or duplicated
+     across workflows, modes or supporting files.
+   - Consider consolidating common preparation, decisions and
+     completion rules while keeping specialised paths focused.
+   - Compare local corrections with an integrated refactor.
+     Prefer the arrangement that best preserves existing
+     behaviour while improving clarity and maintainability.
+   - Seek opportunities where one structural change resolves
+     multiple findings or removes incidental complexity.
+   - Do not restructure solely for symmetry or modularity;
+     require a concrete benefit proportionate to the change.
+5. Choose the least disruptive outcome: **no change**, **focused edits**, or
    **restructure**. Do not equate a longer or more modular skill with a better
    one. State the tradeoff if restructuring is warranted.
-5. In Review mode, report the assessment and proposed edits without changing
+6. In Review mode, report the assessment and proposed edits without changing
    files. In Refine mode, implement only justified changes within the agreed
    scope; preserve existing user choices, manual content, public interfaces,
    paths, and artifact formats unless changing them is necessary and permitted.
-6. If reorganising, update relative links and dependent documentation. Avoid
+7. If reorganising, update relative links and dependent documentation. Avoid
    breaking consumers of an existing skill solely to make its layout cleaner.
 
 ## 4. Validation and completion
