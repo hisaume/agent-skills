@@ -138,6 +138,11 @@ correctness, safety, repeatability, usability, or maintenance cost.
    reasons, files created or changed, checks actually performed, and any
    important remaining uncertainty. Do not dump the whole skill again unless
    requested.
+6. When practical, exercise the skill in a representative environment rather
+   than relying solely on inspection. Test new or changed scripts by executing
+   representative cases. Distinguish observed results from reasoned checks;
+   do not introduce an evaluation framework without need.
+
 
 ## Documentation handoff (secondary)
 
