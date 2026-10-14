@@ -32,9 +32,16 @@ Look for traces of the drafting process that do not help the intended reader:
   over from the authoring exchange.
 - Comparisons with abandoned alternatives that have no enduring explanatory or
   operational value.
+- Instructions about editing, expanding, or organizing the artifact embedded in
+  instructions for using it. Flag these when artifact maintenance is outside the
+  section’s purpose; preserve them in explicit maintenance guidance.
 
-Use the reader test: *Would this passage make sense and provide value to someone
-who never saw the drafting conversation?* If yes, normally keep it.
+Normally keep it if it passes the reader test:
+
+- Would this passage make sense and provide value to someone who never saw the
+  drafting conversation?
+- Is this passage addressed to the reader performing the artifact’s stated task
+  (as opposed to the person drafting or maintaining the artifact?)
 
 Do **not** flag material merely for being explanatory, verbose, or stylistically
 imperfect. Preserve useful design rationale, meaningful operational constraints,
