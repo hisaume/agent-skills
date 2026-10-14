@@ -22,11 +22,11 @@ may also be updated during other engineering workflows.
 
 | Status | Meaning |
 |---|---|
-| Proposed | Finding awaiting confirmation |
-| Open | Confirmed, requiring action or verification |
-| Covered | Relevant verification exists |
-| Accepted | Risk consciously accepted |
-| Retired | No longer applicable |
+| Proposed | Plausible finding awaiting confirmation |
+| Open | Applicable finding requiring action or verification |
+| Covered | Expected behaviour supported by relevant verification evidence |
+| Accepted | Risk explicitly accepted by the developer |
+| Retired | No longer applicable or consolidated into another case |
 
 Risk and confidence are independently rated High,
 Medium or Low.
@@ -49,7 +49,7 @@ Remove these instructions and placeholders when populating.
   explicitly unresolved decision.
 - **Evidence:** Requirement, code path, incident, or
   reasoned architectural failure mode.
-- **Verification:** Test path and test name, or Not covered.
+- **Verification:** Test/check reference and known result, or Not covered.
 - **Work item:** Issue/specification reference, if any.
 
 -->
