@@ -83,7 +83,7 @@ Beads initializes Git if necessary. Use `--mode shared` only when `.beads/` shou
 
 `$scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.`
 
-Node LTS, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugging. Run `pnpm check` for validation.
+Locally installed Node LTS through nvm, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugging. An agent resolves compatible dependencies; bundled assets and a generator create and verify the baseline. Run `pnpm check` for validation.
 
 **Python**
 

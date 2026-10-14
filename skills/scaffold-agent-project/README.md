@@ -1,4 +1,4 @@
-# Quick Start: Agent Project Scaffold
+# scaffold-agent-project
 
 ## What it does
 

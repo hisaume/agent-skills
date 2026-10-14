@@ -1,4 +1,4 @@
-# Code Probe
+# code-probe
 
 A disposable code-inspection skill for isolating one function or execution path without starting the entire application. The skill chooses a lightweight harness from the tooling already available in the repository, with two operating modes.
 
