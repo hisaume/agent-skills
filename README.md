@@ -2,6 +2,35 @@
 
 Intended to live in `~/.agents/skills/` and can be invoked from compatible coding agents using `$skill-name`. Individual projects generally do not need copies of these skills.
 
+
+## Skill development
+
+**Agent Skill architecture and review**
+
+- Supports three operations: Create, Review, and Refine.
+
+Create: `$skill-architect Create a reusable skill for database migration reviews.`
+
+Review: `$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
+
+Refine: `$skill-architect Refine edge-case-analysis based on the review findings.`
+
+Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
+
+
+## Quality analysis
+
+**Edge-case discovery and reconciliation**
+
+- Defines two distinct modes of operation: discovery and reconciliation.
+
+Discovery mode: `$edge-case-analysis Discover edge cases in this feature before specification.`
+
+Reconciliation mode: `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
+
+Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
+
+
 ## Project setup
 
 **New project with Beads**
@@ -31,18 +60,6 @@ Node LTS, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugg
 CPython via uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. Run `./check.sh` for validation.
 
 Both scaffolds target plain applications rather than framework-specific projects.
-
-## Quality analysis
-
-**Edge-case discovery and reconciliation**
-
-- Defines two distinct modes of operation: discovery and reconciliation.
-
-Discovery mode: `$edge-case-analysis Discover edge cases in this feature before specification.`
-
-Reconciliation mode: `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
-
-Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
 
 ## Conventions
 
