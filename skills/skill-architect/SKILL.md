@@ -138,3 +138,6 @@ Keep user-facing documentation aligned without making it a separate workflow:
 - Follow existing style, preserve unrelated content, and derive descriptions
   from the actual `SKILL.md`. If root README editing is outside scope, provide
   an insertion snippet instead. Do not add README files just for symmetry.
+- **Final hygiene:** Run `prompt-residue-sweep` on all created or materially
+  revised human-readable artifacts. Report clear findings and apply only minimal,
+  meaning-preserving corrections when editing is authorized.
