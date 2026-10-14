@@ -45,6 +45,9 @@ correctness, safety, repeatability, usability, or maintenance cost.
 - **Workflow:** Put common preparation and selection rules before mode-specific
   operations. Share admission, completion, and reporting rules instead of
   duplicating them across modes.
+- **Formatting:** Use `###` headings for meaningful subsections within
+  `##` sections when they improve readability, especially in lengthy
+  numbered workflows. Avoid unnecessary heading depth or fragmentation.
 - **Judgment vs. determinism:** Give criteria for open-ended analysis. Specify
   exact commands, assets, or scripts only where repeatability, safety, or a
   fragile operation warrants them. Never make speculative examples universal.

@@ -1,4 +1,3 @@
-
 ---
 name: edge-case-analysis
 description: Discover, prioritise and reconcile meaningful edge cases in software projects. Use during requirements planning before specification, when reviewing failure scenarios, or when auditing existing code, tests and documentation for missing edge cases.
