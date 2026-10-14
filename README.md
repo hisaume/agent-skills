@@ -9,13 +9,34 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
 
 - Supports three operations: Create, Review, and Refine.
 
-Create: `$skill-architect Create a reusable skill for database migration reviews.`
+Create:
 
-Review: `$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
+`$skill-architect Create a reusable skill for database migration reviews.`
 
-Refine: `$skill-architect Refine edge-case-analysis based on the review findings.`
+Review:
+
+`$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
+
+Refine:
+
+`$skill-architect Refine edge-case-analysis based on the review findings.`
 
 Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
+
+
+## Debugging
+
+**Isolated code probing and debugger handoff**
+
+Auto-probe:
+
+`$code-probe Check whether compare() skips a target under certain conditions.`
+
+Handoff:
+
+`$code-probe handoff on compare()`
+
+Creates minimal, disposable harnesses with adjustable inputs and dependency isolation. Auto-probe investigates suspected behaviour; handoff prepares a VS Code debugging entry point without executing behavioural checks or setting breakpoints. Language-independent and adapted to existing project tooling.
 
 
 ## Quality analysis
@@ -24,9 +45,13 @@ Evaluates skill structure, responsibilities, guardrails, documentation hygiene, 
 
 - Defines two distinct modes of operation: discovery and reconciliation.
 
-Discovery mode: `$edge-case-analysis Discover edge cases in this feature before specification.`
+Discovery mode:
 
-Reconciliation mode: `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
+`$edge-case-analysis Discover edge cases in this feature before specification.`
+
+Reconciliation mode:
+
+`$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
 
 Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
 
@@ -51,6 +76,7 @@ Creates project guidance, domain context, specification indexing, and a local ap
 
 Beads initializes Git if necessary. Use `--mode shared` only when `.beads/` should be repository-managed.
 
+
 ## Application scaffolding
 
 **Node.js / TypeScript**
@@ -66,6 +92,7 @@ Node LTS, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugg
 CPython via uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. Run `./check.sh` for validation.
 
 Both scaffolds target plain applications rather than framework-specific projects.
+
 
 ## Conventions
 

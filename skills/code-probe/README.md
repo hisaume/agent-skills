@@ -38,5 +38,3 @@ The skill selects among direct scripts, REPL evaluation, existing test runners, 
 - **No unapproved dependency installation or tracked configuration changes.** Existing `launch.json` entries are preserved; permission is required before altering a tracked one.
 - **No automatic regression-test promotion.** Harnesses are disposable, but retained long enough for manual debugging or reuse.
 - **No implied verification in handoff mode.** The generated scenario is prepared for execution; behavior has not been tested by the agent.
-
-Language-specific guidance in `SKILL.md` is kept separate from the general harness selection process so additional languages can be supported without changing the two operating modes.

@@ -71,7 +71,8 @@ The selection rules above remain authoritative. Adapt to each repository; these 
 
 - **Python:** Respect the project interpreter/environment (for example, `uv` and its lockfile). A REPL can suit tiny pure expressions; a script or existing `unittest`/pytest test usually suits repeatable runs. Use the installed Python debugger/VS Code adapter when available.
 - **TypeScript/JavaScript:** Reuse the project's package manager, runtime/loader, test runner, module format, and source-map configuration (for example, Node, tsx, Jest, or Vitest). Ensure the debugger runs the same execution path and resolves TypeScript source when applicable.
-- **Other languages:** Derive the smallest executable entry point and debugger settings from the repository's own build, test, and IDE conventions. Add language-specific guidance only when recurring failures justify it.
+- **Other languages:** Derive the smallest executable entry point and debugger settings from the repository's own build, test, and IDE conventions.
+
 
 ## 2. Auto-probe
 
