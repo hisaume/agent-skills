@@ -25,7 +25,7 @@ Isolate one selected code path with the least scaffolding needed for useful inve
 
 - Inspect imports, call sites, arguments, side effects, existing tests/fixtures, runtime setup, and project scripts or configuration.
 - Reuse existing test seams, fakes, dependency-injection points, interpreters, loaders, and debug adapters.
-- Identify destructive operations and external calls before deciding what to execute or simulate.
+- Identify destructive operations and external calls before deciding what to execute or simulate. Include package-script hooks and automatic dependency setup in this inspection; a run/test command may trigger an installation.
 
 ### 1.3 Select the execution harness
 
@@ -71,7 +71,7 @@ Prefer a file-based, repeatable entry point for debugger handoff. Do not try eac
 The selection rules above remain authoritative. Adapt to each repository; these are examples, not fixed templates.
 
 - **Python:** Respect the project interpreter/environment (for example, `uv` and its lockfile). A REPL can suit tiny pure expressions; a script or existing `unittest`/pytest test usually suits repeatable runs. Use the installed Python debugger/VS Code adapter when available.
-- **TypeScript/JavaScript:** Reuse the project's package manager, runtime/loader, test runner, module format, and source-map configuration (for example, Node, tsx, Jest, or Vitest). Ensure the debugger runs the same execution path and resolves TypeScript source when applicable.
+- **TypeScript/JavaScript:** Reuse the project's package manager, runtime/loader, test runner, module format, and source-map configuration (for example, Node, tsx, Jest, or Vitest). Ensure the debugger runs the same execution path and resolves TypeScript source when applicable. Check the effective module format at the harness location, including its extension and nearest `package.json`; its scope can differ from the target's. Adapt the harness rather than changing project module settings to make it load.
 - **Other languages:** Derive the smallest executable entry point and debugger settings from the repository's own build, test, and IDE conventions.
 
 
