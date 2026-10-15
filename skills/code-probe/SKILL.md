@@ -58,7 +58,7 @@ Prefer a file-based, repeatable entry point for debugger handoff. Do not try eac
 - Favor a small faithful reproduction over broad branch coverage. Add complexity only to reach the requested path or isolate a relevant dependency.
 - Do not refactor production code, install dependencies without approval, rewrite project tooling, or construct a replica of the application simply to make the probe work.
 - If isolation becomes disproportionate, stop and explain the blocker, the simplest viable next step, and what remains unverified.
-- Keep generated files disposable and uncommitted. Prefer a project-local ignored scratch directory; do not modify tracked ignore rules without permission. Do not delete artifacts needed for handoff.
+- Keep generated files disposable and uncommitted. Prefer a project-local ignored scratch directory; do not modify tracked ignore rules without permission. Do not delete artifacts needed for handoff. Inspect existing probe artifacts before reusing them, and preserve manual scenario edits rather than recreating files by default.
 
 ### 1.7 Additional dependency negotiation
 
@@ -94,7 +94,8 @@ The selection rules above remain authoritative. Adapt to each repository; these 
 ### 3.2 Configure debugging
 
 - Default to a **named VS Code launch configuration** when VS Code is the intended editor and a suitable adapter is available. Use the selected harness as entry point, with appropriate working directory, environment, runtime arguments, and source mapping.
-- If `.vscode/launch.json` does not exist, create it. If it exists, add or refresh only the code-probe configuration; preserve other entries, comments, and settings. Do not replace the whole file.
+- If `.vscode/launch.json` does not exist, create it. If it exists, add or refresh only the code-probe configuration; preserve other entries, comments, and settings. Do not replace the whole file. Identify an existing probe entry by its target or harness as well as its name; choose a distinct name when ownership is ambiguous.
+- Handle `launch.json` as JSON with comments and trailing commas. If it is malformed or cannot be edited safely while preserving its contents, leave it unchanged and provide a separate configuration snippet.
 - If this requires changing a tracked project configuration, request approval first. If declined, provide a ready-to-insert configuration without modifying the tracked file.
 - If a launch configuration is unsuitable, supply the smallest exact debugger invocation instead; do not install an adapter without approval.
 

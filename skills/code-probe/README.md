@@ -37,4 +37,5 @@ The skill selects among direct scripts, REPL evaluation, existing test runners, 
 - **No unnecessary production changes.** Existing dependency seams and runtime tools are preferred.
 - **No unapproved dependency installation or tracked configuration changes.** Existing `launch.json` entries are preserved; permission is required before altering a tracked one.
 - **No automatic regression-test promotion.** Harnesses are disposable, but retained long enough for manual debugging or reuse.
+- **Preserve existing handoffs.** Manual scenario edits and unrelated launch entries are retained. Malformed launch files receive a separate configuration snippet instead of being overwritten.
 - **No implied verification in handoff mode.** The generated scenario is prepared for execution; behavior has not been tested by the agent.
