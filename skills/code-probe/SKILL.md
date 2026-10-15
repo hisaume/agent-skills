@@ -42,6 +42,7 @@ Prefer a file-based, repeatable entry point for debugger handoff. Do not try eac
 
 - Keep the real target implementation under inspection; do not copy or reimplement its logic in the harness.
 - Substitute network, database, model, time, or other external dependencies only insofar as they obscure the behavior being investigated.
+- When patching a dependency, replace the reference the target actually resolves, which may be an imported alias. Scope temporary replacements so they are restored even when the target raises an error.
 - Use temporary files/directories when they are simpler than filesystem mocks. Keep any resources needed by the debugger alive until execution returns.
 - Avoid modifying production source or launching external services. Do not allow destructive operations against real data.
 
@@ -77,7 +78,7 @@ The selection rules above remain authoritative. Adapt to each repository; these 
 ## 2. Auto-probe
 
 1. Translate the user's suspicion into the fewest relevant observations or assertions. When no expected value is established, observe and report rather than inventing a pass condition.
-2. Execute the chosen harness using the existing project runtime. Capture relevant inputs, outputs, intermediate observations available without production changes, and errors.
+2. Execute the chosen harness using the existing project runtime. Capture relevant inputs, outputs, intermediate observations available without production changes, and errors. When using a test runner, confirm that the intended cases were collected and executed; a successful exit alone does not establish this.
 3. If setup fails, distinguish harness/runtime failure from target behavior. Repair minimal scaffolding and retry only when proportionate.
 4. Compare actual observations with expected behavior. State whether the hypothesis is supported, contradicted, or unresolved; distinguish reproductions from inferences.
 5. Report the invocation, scenario knobs, observations, limitations, and disposable file locations. Do not automatically promote the harness into permanent tests.
