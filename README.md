@@ -2,97 +2,89 @@
 
 Intended to live in `~/.agents/skills/` and can be invoked from compatible coding agents using `$skill-name`. Individual projects generally do not need copies of these skills.
 
-
 ## Skill development
 
-**Agent Skill architecture and review**
+- ### Agent Skill architecture and review
+  - Supports three operations: Create, Review, and Refine.
 
-- Supports three operations: Create, Review, and Refine.
+    Create:
 
-Create:
+    `$skill-architect Create a reusable skill for database migration reviews.`
 
-`$skill-architect Create a reusable skill for database migration reviews.`
+    Review:
 
-Review:
+    `$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
 
-`$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
+    Refine:
 
-Refine:
+    `$skill-architect Refine edge-case-analysis based on the review findings.`
 
-`$skill-architect Refine edge-case-analysis based on the review findings.`
-
-Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
-
+  - Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
 
 ## Debugging
 
-**Isolated code probing and debugger handoff**
+- ### Isolated code probing and debugger handoff
 
-Auto-probe:
+  Auto-probe:
 
-`$code-probe Check whether compare() skips a target under certain conditions.`
+  `$code-probe Check whether compare() skips a target under certain conditions.`
 
-Handoff:
+  Handoff:
 
-`$code-probe handoff on compare()`
+  `$code-probe handoff on compare()`
 
-Creates minimal, disposable harnesses with adjustable inputs and dependency isolation. Auto-probe investigates suspected behaviour; handoff prepares a VS Code debugging entry point without executing behavioural checks or setting breakpoints. Language-independent and adapted to existing project tooling.
-
+  Creates minimal, disposable harnesses with adjustable inputs and dependency isolation. Auto-probe investigates suspected behaviour; handoff prepares a VS Code debugging entry point without executing behavioural checks or setting breakpoints. Language-independent and adapted to existing project tooling.
 
 ## Quality analysis
 
-**Edge-case discovery and reconciliation**
+- ### Edge-case discovery and reconciliation
+  - Defines two distinct modes of operation: discovery and reconciliation.
 
-- Defines two distinct modes of operation: discovery and reconciliation.
+  Discovery mode:
 
-Discovery mode:
+  `$edge-case-analysis Discover edge cases in this feature before specification.`
 
-`$edge-case-analysis Discover edge cases in this feature before specification.`
+  Reconciliation mode:
 
-Reconciliation mode:
+  `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
 
-`$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
+  Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
 
-Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
+- ### Prompt-residue sweep
 
-**Prompt-residue sweep**
+  `$prompt-residue-sweep Review this README.md for conversational residue. Report findings only.`
 
-`$prompt-residue-sweep Review this README.md for conversational residue. Report findings only.`
-
-Identifies drafting or conversational residue in finished prose, documentation, and code comments. Reports exact excerpts and minimal corrections without modifying files.
-
+  Identifies drafting or conversational residue in finished prose, documentation, and code comments. Reports exact excerpts and minimal corrections without modifying files.
 
 ## Project setup
 
-**New project with Beads**
+- ### Project agent guidance
 
-`$scaffold-agent-project Scaffold this project with Beads.`
+  `$scaffold-agent-project Scaffold agent guidance in this project.`
 
-Creates project guidance, domain context, specification indexing, and a local application-delivery workflow.
+  Creates project guidance, domain context, specification indexing, and a local application-delivery workflow. Defaults to no tracker; reuses a declared tracker when selected. Explicitly requesting Beads initializes it with `setup-beads` skill. Small, well-understood changes do not require new specifications or vertical-slice plans.
 
-**Add Beads to an existing project**
+- ### Add Beads to an existing project
 
-`$setup-beads Set up Beads for this project.`
+  `$setup-beads Set up Beads for this project.`
 
-Beads initializes Git if necessary. Use `--mode shared` only when `.beads/` should be repository-managed.
-
+  Beads initializes Git if necessary. Use `--mode shared` only when `.beads/` should be repository-managed.
 
 ## Application scaffolding
 
-**Node.js / TypeScript**
+- ### Node.js / TypeScript
 
-`$scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.`
+  `$scaffold-node-ts Scaffold this directory as a Node.js TypeScript application.`
 
-Locally installed Node LTS through nvm, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugging. An agent resolves compatible dependencies; bundled assets and a generator create and verify the baseline. Run `pnpm check` for validation.
+  Locally installed Node LTS through nvm, pnpm, ESM, TypeScript, linting, formatting, Vitest, and VS Code debugging. An agent resolves compatible dependencies; bundled assets and a generator create and verify the baseline. Run `pnpm check` for validation.
 
-**Python**
+- ### Python
 
-`$scaffold-python Scaffold this directory as a Python application.`
+  `$scaffold-python Scaffold this directory as a Python application.`
 
-Locally installed final CPython through uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. An agent resolves compatible tools; bundled assets and a generator create and verify the baseline. Run `./check.sh` for validation.
+  Locally installed final CPython through uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. An agent resolves compatible tools; bundled assets and a generator create and verify the baseline. Run `./check.sh` for validation.
 
-Both scaffolds target plain applications rather than framework-specific projects.
-
+  Both scaffolds target plain applications rather than framework-specific projects.
 
 ## Conventions
 

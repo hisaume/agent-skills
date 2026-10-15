@@ -6,7 +6,10 @@
 
 ## Deliver work
 
-1. Run the repository's authoritative validation command.
+1. Run the repository's authoritative validation command. If it is unconfigured,
+   run checks justified by actual project tooling and report the missing quality
+   gate; do not invent commands or claim checks passed without execution.
 2. Follow the commit, pull-request, and synchronization authority in
    `AGENTS.md`.
-3. Hand off changed files, validation, tracker state, and remaining work.
+3. Hand off changed files, validation, remaining work, and tracker state when a
+   tracker is configured.

@@ -9,9 +9,12 @@
 
 ## Commands
 
-- Install: _Set the project installation command._
-- Check: _Set the authoritative validation command._
-- Test: _Set the focused test command, if distinct._
+- Install: not configured.
+- Check: not configured.
+- Test: not configured.
+
+Consult actual project tooling before running commands. Report any missing
+quality gate; do not invent commands or treat missing checks as passing.
 
 ## Project invariants
 
@@ -20,4 +23,6 @@
 ## Delivery authority
 
 - {{TRACKER_NOTE}}
-- _State the repository's commit, push, pull-request, and tracker-sync policy._
+- Do not commit, push, open pull requests, or synchronize an external tracker
+  unless the user explicitly authorizes those actions. Authorization already
+  given for the current task remains valid.

@@ -5,37 +5,71 @@ description: Scaffold a project-root agent-guidance layout with AGENTS.md, domai
 
 # Scaffold agent project
 
-Create the personal project-standard layout without overwriting existing
-guidance. The scaffold supplies structure, not project decisions.
+Create the personal project-standard layout without overwriting existing guidance.
+The scaffold supplies structure; domain details and project commands remain unconfigured.
 
 ## Before scaffolding
 
-1. Confirm the target directory is the intended project root.
-2. Inspect existing `AGENTS.md`, `.agents/`, `docs/`, and tracker state.
-3. For an established repository, show the planned files first and preserve
-   existing guidance unless the user explicitly asks to replace it.
+1. Confirm the intended project root and inspect existing `AGENTS.md`, `.agents/`,
+   `docs/`, and tracker state.
+2. For an established repository, show planned files first. Preserve existing
+   guidance and delivery authority; do not replace it or merge around collisions
+   unless the user explicitly requests a separate customization step.
+3. Reuse a known tracker: choose `--tracker beads` for Beads or
+   `--tracker repository` for another repository-declared tracker. If none exists
+   or is requested, use the default `--tracker none`. Do not infer tracker setup
+   permission from the presence of its executable.
 
 ## Run the scaffold
 
-Run a dry run first:
+Resolve `scripts/scaffold.py` relative to this loaded skill's directory; it need
+not exist inside the target project. Preview first:
 
-```bash
-python3 .agents/skills/scaffold-agent-project/scripts/scaffold.py \
-  --target <project-root> --dry-run
+```text
+python3 <skill-directory>/scripts/scaffold.py --target <project-root> --tracker <none|beads|repository> --dry-run
 ```
 
-For a new Beads-managed project, omit `--tracker`; it defaults to `beads`.
-Use `--tracker none` when the repository has no durable tracker yet. Add
-`--with-beads` when the user wants the complete personal baseline in one step.
-After scaffolding, it delegates local Beads initialization to `setup-beads`;
-that skill remains the single owner of Beads safety and hook policy.
+If preview succeeds, run with the same target, name, and tracker options without
+`--dry-run`:
 
-After it succeeds, stop. Do not replace placeholders or modify generated files unless the user explicitly asks
-for a follow-up customization step.
+```text
+python3 <skill-directory>/scripts/scaffold.py --target <project-root> --tracker <none|beads|repository>
+```
+
+Use `--project-name` only when a display name other than the directory name is
+requested. The script refuses existing destination entries, symlinks, invalid
+parent paths, unreadable templates, and observable write restrictions before
+writing. Never bypass a refusal or delete existing files to proceed. A preview
+cannot guarantee later writes will succeed; report actual results separately.
+
+`--tracker beads` selects guidance without initializing Beads. Confirm its actual
+state before reporting it as usable. Add `--with-beads` only when the user requests
+local Beads initialization; this flag implies `beads` if `--tracker` is omitted,
+and rejects an explicitly incompatible tracker. `--initialize-beads` is a
+compatibility alias. Initialization delegates to `setup-beads`, which remains the
+single owner of Beads storage, safety, and hook policy.
+
+If creation fails unexpectedly, report the created and missing files, preserve
+partial output, and stop. Do not rerun over it. If guidance creation succeeds but
+Beads setup fails, report those stages separately and use `setup-beads` for any
+authorized retry rather than rerunning the scaffold.
+
+## Verify and hand off
+
+Confirm the five expected files exist and reflect the selected tracker. Report
+preview and actual creation results, tracker selection, whether initialization
+was attempted and succeeded, and any blocked or partial output. Do not describe
+this layout as a fully configured project: commands and domain content still
+need a separately requested customization step.
+
+After successful scaffolding, stop. Do not fill placeholders or modify generated
+files unless customization is explicitly requested. Small, well-understood
+changes may use the generated delivery workflow directly without new
+specifications or vertical-slice plans; substantial or consequential changes
+retain those planning steps and all changes retain relevant validation.
 
 ## Resulting layout
 
-The scaffold creates `AGENTS.md`, `CONTEXT.md`, `docs/specs/README.md`, and
-the project-local `application-delivery` skill. Read
-[the layout reference](references/layout.md) when deciding which generated
-files remain useful for a particular repository.
+The scaffold creates `AGENTS.md`, `CONTEXT.md`, `docs/specs/README.md`, and the
+project-local `application-delivery` skill with its workflow reference. Read
+[the layout reference](references/layout.md) when assessing the generated files.

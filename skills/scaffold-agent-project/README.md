@@ -1,61 +1,38 @@
 # scaffold-agent-project
 
-## What it does
+Creates project guidance, domain and specification entry points, and a project-local application-delivery workflow without overwriting existing files.
 
-Creates 3 broad separation of concerns, divided into 5 files:
+## Usage
 
-**1. PROJECT PROMPT**
+`$scaffold-agent-project Scaffold agent guidance in this project.`
 
-- `AGENTS.md` — repository-wide agent guidance, including sources of truth and delivery policy.
-- `CONTEXT.md` — shared domain vocabulary, assumptions, and invariants.
+Inspects existing guidance and tracker state, previews the planned files, and runs the deterministic generator. An existing established layout requires review rather than automatic replacement.
 
-**2. WORKFLOW PROMPT**
+Direct invocation from any directory:
 
-- `.agents/skills/application-delivery/SKILL.md` — instructions for planning and delivering durable application changes.
-- `.agents/skills/application-delivery/references/workflow.md` — detailed workflow used by the application-delivery skill.
+```bash
+python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --dry-run
+python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project
+```
 
-**3. APPLICATION DOCUMENTATION**
+The default is no tracker. Select `--tracker beads` for Beads guidance or `--tracker repository` to reuse another declared tracker. Guidance selection alone does not initialize a tracker. When local Beads setup is explicitly requested, add `--with-beads`; it implies Beads unless an incompatible tracker is supplied. `--initialize-beads` remains a compatibility alias. Initialization delegates to `setup-beads` without taking ownership of its safety or hook policy.
 
-- `docs/specs/README.md` — index for the software behavioral specifications (e.g design, architecture, and API).
+## Output
 
-See also: [layout reference](references/layout.md).
+Separates repository-wide guidance and domain context from an on-demand delivery workflow and a specification index. See [the layout reference](references/layout.md).
 
-## What it uses
+- Preserves existing files and refuses unsafe destinations before creation.
+- Generates genuine tracker-free guidance when no tracker is configured.
+- Marks project commands unconfigured and leaves domain placeholders intact.
+- Requires authorization for commits, pushes, pull requests, and external tracker synchronization.
+- Allows small, well-understood changes without creating specifications or vertical-slice plans solely because those artifacts are absent.
 
-Preview:
+The result is a scaffold, not a fully configured project. Customize commands, domain invariants, specifications, and delivery authority only in a separately requested step. Unexpected partial failures report created and missing files; inspect that output before retrying.
 
-`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --dry-run`
+## Skill files
 
-Create a Beads-managed layout:
+- [SKILL.md](SKILL.md) — inspection, tracker selection, generation, verification, and handoff rules.
+- [scripts/scaffold.py](scripts/scaffold.py) — deterministic template rendering, destination preflight, exclusive creation, and optional delegation to Beads setup.
+- `assets/` — canonical guidance and delivery-workflow templates.
 
-`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --project-name "My Project"`
-
-Create the complete personal baseline, including local-only Beads without generated `AGENTS.md` guidance or Git hooks:
-
-`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --project-name "My Project" --with-beads`
-
-`--with-beads` delegates to `setup-beads`; use `setup-beads` directly when adding Beads to an established repository. `--initialize-beads` remains a compatibility alias.
-
-Create without Beads:
-
-`python3 ~/.agents/skills/scaffold-agent-project/scripts/scaffold.py --target /path/to/project --tracker none`
-
-## Customize after scaffolding
-
-1. `AGENTS.md`
-   - Set install, check, and test commands.
-   - Add project-wide invariants.
-   - State commit, PR, and tracker-sync authority.
-
-2. `CONTEXT.md`
-   - Add stable domain vocabulary and invariants.
-
-3. `docs/specs/README.md`
-   - Link the authoritative specification.
-   - Record superseded specifications and amendments.
-
-4. `.agents/skills/application-delivery/references/workflow.md`
-   - Change only if the project’s tracker lifecycle differs.
-
-5. `.agents/skills/application-delivery/SKILL.md`
-   - Change only for a genuinely different delivery workflow.
+Regression checks: `python3 -m unittest discover -s tests` from this skill directory.
