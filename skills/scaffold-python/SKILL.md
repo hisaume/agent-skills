@@ -5,177 +5,120 @@ description: Scaffold a new plain runnable Python application in an already-crea
 
 # Scaffold Python Application
 
-Create a small, packaged Python application that is runnable, typed, tested, and easy to verify.
+Create a small packaged application using `scripts/scaffold.py` and the canonical
+files in `assets/`. The agent handles eligibility, runtime and dependency
+selection, installation, and diagnosis. The script owns baseline file contents.
+Do not independently recreate or customise the baseline.
 
-## Inspect first
+## 1. Inspect and prepare
 
-- Inspect the target directory before changing it.
-- Preserve unrelated existing files.
-- Never overwrite an existing file or configuration without explicit approval.
-- For an existing `.gitignore`, preserve its contents and append missing baseline entries as specified below.
-- If `pyproject.toml` already exists, stop and report that the directory is already a Python project.
-- Do not use this skill for libraries intended primarily for publishing, existing configured Python projects, web frameworks, monorepos/workspaces, or projects with substantial Python configuration.
+- Work in the requested existing directory, or the current directory if unspecified.
+  Inspect before writing and preserve unrelated files.
+- Stop if `pyproject.toml` or substantial Python configuration already exists.
+  Do not use this skill for publish-first libraries, frameworks, or workspaces.
+  If an ancestor defines a uv workspace, stop and request a standalone location;
+  do not modify the parent workspace or silently join it.
+- Require installed uv. Do not install or upgrade uv automatically. Use uv for
+  Python selection, environments, dependencies, and builds.
+- Select the newest **locally installed final CPython** using
+  `uv python list --only-installed --output-format json`. Consider only entries
+  whose implementation is `cpython`, variant is `default`, path exists, and
+  version is exactly three numeric components. Compare version components
+  numerically. Do not infer the runtime from the calendar or a release schedule.
+- Require CPython 3.11 or newer. Resolve the selected exact version through uv and
+  confirm its actual version, CPython implementation, and final release status.
+  Python has no LTS designation. Never select alpha, beta, release-candidate,
+  free-threaded, or other implementation variants for this baseline.
+- Set `UV_PYTHON_DOWNLOADS=never` throughout. Do not download Python or install it
+  into a temporary directory. Stop if no suitable installed interpreter exists.
+  Keep any explicit interpreter selection consistent across commands.
+- If the default uv cache is unwritable, set `UV_CACHE_DIR` to a writable temporary
+  location and keep it set through all checks. Do not disable TLS verification.
+- If Git is available, detect an existing repository using Git rather than just
+  a local `.git` entry. Reuse it without changing parent configuration, or run
+  `git init` when outside a repository. Stop before generation if Git preparation
+  is blocked. If Git is unavailable, continue and report it as unavailable.
+  Never create a nested repository, commit, push, merge, rebase, or create remotes.
 
-## Naming
+## 2. Resolve development dependencies
 
-- Derive the default project name from the already-created folder name.
-- Normalize the folder-derived distribution name to a hyphenated name, such as `my-app`; do not rename the existing project directory.
-- Normalize the import package to an underscore-safe Python identifier, such as `my_app`.
-- Use the distribution name as the CLI name where practical, such as `my-app`.
-- Never use hyphens in a Python import package name.
-- Report the derived distribution, import package, and CLI names before completion if normalization is non-obvious.
+Resolve exact latest stable mutually compatible releases of `ruff`, `mypy`,
+`pytest`, and the `uv_build` build backend for the selected Python. Use uv's
+resolver and inspect metadata as needed. A temporary requirements file outside
+the project can be resolved with `uv pip compile --python-version <exact-version>`.
+Do not add application runtime dependencies, pytest plugins, or extra tooling.
+Report any compatibility fallback instead of silently weakening checks.
 
-## Git
+Write a temporary JSON input file outside the project with exactly these fields:
 
-- Detect whether the target directory is already inside a Git repository; do not rely only on a local `.git` entry.
-- Reuse the existing repository when the target is inside one.
-- If it is not inside a repository, initialize Git in the target directory.
-- Never create a nested repository.
-- Never commit, push, merge, rebase, create remotes, or alter shared history automatically.
+| Field | Value |
+|---|---|
+| `python` | Selected exact final version, such as `3.14.6` |
+| `uv_build` | Resolved exact stable backend version |
+| `dependencies` | Object with exactly `mypy`, `pytest`, and `ruff`, each an exact stable version |
 
-## Python and uv
+Version numbers are resolved inputs, not defaults to copy from this document.
 
-- Use `uv` for Python runtime, project, and dependency management.
-- Select the latest stable **final** CPython release available. Never select alpha, beta, or release-candidate versions.
-- Do not call Python releases LTS.
-- Pin the selected Python minor line in `.python-version`, for example `3.14`; use a patch-level pin only when necessary.
-- Set `requires-python` consistently in `pyproject.toml`.
-- Initialize outside any parent uv workspace by using `--no-workspace` or the current equivalent.
-- Do not let uv initialize Git; manage Git separately.
-- Use uv's current recommended pure-Python build backend, `uv_build`, where appropriate.
-- Set the initial project version to `0.0.1`.
-- Remove generated metadata references to excluded files, such as a README or license, rather than creating those files.
-- Generate and retain `uv.lock`; it is intended to be committed.
-- Do not publish the project or invent a Python equivalent of npm `private: true`.
+## 3. Generate and install
 
-## Project layout
-
-Create this conceptual layout, without replacing unrelated existing files:
+Resolve paths relative to this skill's directory, then run through uv:
 
 ```text
-.gitignore
-.python-version
-.vscode/launch.json
-check.sh
-pyproject.toml
-uv.lock
-src/<import_package>/__init__.py
-src/<import_package>/__main__.py
-tests/test_smoke.py
+uv run --no-project --python <exact-version> <skill-directory>/scripts/scaffold.py create <project-directory> <inputs.json>
 ```
 
-- Create `.git/` only when the target was not already contained in a Git repository.
-- Use the packaged `src/` layout.
-- Ensure uv installs the application editably in its environment so tests exercise the installed package rather than accidental repo-root imports.
+The script derives the distribution, import package, and CLI names from the
+existing directory without renaming it. It handles punctuation, numeric prefixes,
+and Python keywords. It pins the Python minor line and exact tool/backend
+versions, and creates a packaged `src/` application with typed entry points,
+Ruff, strict mypy, pytest importlib mode, executable `check.sh`, and VS Code
+module debugging using the project `.venv` on POSIX and Windows.
 
-## Runtime entry point
+Existing destination files block generation except `.gitignore`, whose existing
+contents are preserved and missing baseline entries appended. Unsafe paths and
+symlink destinations are refused before baseline writes. Do not delete conflicts,
+bypass the generator, or overwrite existing files to proceed. A partial write
+failure must be reported; do not rerun over partial output.
 
-- Create `src/<import_package>/__main__.py` with `main() -> None`.
-- Include `if __name__ == "__main__": main()`.
-- Add a `[project.scripts]` entry mapping `<cli-name>` to `<import_package>.__main__:main` so `uv run <cli-name>` works.
-- Ensure `uv run python -m <import_package>` also works.
-- Make starter behavior print only a simple confirmation.
-- Do not invent application architecture or business logic.
+Do not use `uv init` to produce a second baseline, add project guidance or README
+files, or let uv initialize Git. Run `uv lock` and `uv sync --locked` using the
+selected Python, and retain `uv.lock`. Keep uv's editable project installation.
+Do not pass `--no-install-project`, `--no-editable`, or bypass lock verification.
+If resolution fails, diagnose within the stated constraints. If changing resolved
+inputs after generation is necessary, report the scaffold as incomplete rather
+than editing canonical files around the generator's preservation rule.
 
-## Development tools
+## 4. Verify and report
 
-- Add the latest stable mutually compatible development releases of `ruff`, `mypy`, and `pytest`.
-- Use `pytest`, not `unittest`, as the test baseline.
-- Do not add Black, isort, Flake8, pytest plugins, coverage tooling, tox, nox, just, Make, or other task runners by default.
-- Keep mypy as the type-checking baseline; do not substitute Pyright or ty.
+Run every check and inspect its own exit status; stop on an unresolved failure:
 
-## Ruff
+1. `uv run --locked ruff format .`
+2. `uv run --no-project --python <exact-version> <skill-directory>/scripts/scaffold.py verify <project-directory> <inputs.json>`
+3. `./check.sh`
+4. `uv run --locked <cli-name>`
+5. `uv run --locked python -m <import_package>`
+6. `uv build`
 
-- Configure Ruff in `pyproject.toml`.
-- Use Ruff for both linting and formatting.
-- Use a sensible modern baseline rule set without over-customizing style.
-- Let metadata such as `requires-python` supply the target Python version; do not duplicate unnecessary version configuration.
+Both entry points must print `Application is running.` and exit successfully.
+Confirm that a wheel and source archive exist in `dist/`. Inspect the editable
+installation using `importlib.metadata`: the distribution's `direct_url.json`
+must mark it editable, and the imported package must resolve under this project's
+`src/`. Inspect `git status --short` when Git is available.
 
-## mypy
-
-- Configure mypy in `pyproject.toml`.
-- Start strict for a fresh project.
-- Add an exception only for a current tooling limitation, and document it narrowly.
-
-## pytest
-
-- Configure pytest in `pyproject.toml`.
-- Keep tests in `tests/`.
-- Prefer pytest's importlib import mode for a new `src/` layout project, for example `--import-mode=importlib`.
-- Add one minimal smoke test that proves the package import and test setup work.
-- Do not invent fake business behavior.
-
-## check.sh
-
-- Create an executable root-level `check.sh`.
-- Treat the root location as a deliberate house convention for discoverability, not universal Python practice.
-- Use a Bash shebang (`#!/usr/bin/env bash`), followed by `set -euo pipefail`.
-- Keep the quality gate visible in the script; do not hide it in another task runner.
-- Run the following checks with the lock enforced:
-
-```bash
-uv run --locked ruff check .
-uv run --locked ruff format --check .
-uv run --locked mypy .
-uv run --locked pytest
-```
-
-- Larger projects may later move this file to `scripts/` and update references.
-- Do not add PowerShell parity by default; Git Bash or WSL can run this script on Windows.
-
-## .gitignore
-
-- Preserve existing entries; append only missing baseline entries.
-- Include these sensible Python/application entries:
-
-```gitignore
-.venv/
-__pycache__/
-*.py[cod]
-.mypy_cache/
-.ruff_cache/
-.pytest_cache/
-.coverage
-htmlcov/
-dist/
-build/
-*.egg-info/
-.env
-.env.*
-!.env.example
-*.log
-.DS_Store
-```
-
-- Do not ignore `.vscode/`; the scaffold deliberately provides a debug configuration.
-
-## VS Code-compatible debugging
-
-- Create only `.vscode/launch.json` as the editor-specific convenience layer.
-- Configure it to launch and debug the module or application with the project `.venv` interpreter and ordinary Python source breakpoints.
-- Do not add source maps; Python does not need them.
-- Do not add `debugpy` as a project dependency by default. VS Code-family Python debugging already supplies the needed machinery.
-- Add `debugpy` only when the project explicitly needs remote, container, or attach debugging.
-- Do not create `.vscode/settings.json`, extension recommendations, or other editor configuration.
-
-## Verification
-
-- Run the formatter to normalize generated files when appropriate.
-- Run `./check.sh`.
-- Verify `uv run <cli-name>` succeeds.
-- Verify `uv run python -m <import_package>` succeeds.
-- Verify `uv build` succeeds and generates artifacts.
-- Inspect `git status --short` when Git is available.
-- Fix failures caused by the scaffold before reporting success.
-- Report the selected Python version, derived distribution/import package/CLI names, whether Git was initialized or reused, and verification results.
+Completion requires canonical verification and every required check to pass.
+Report Python and uv versions, derived distribution/package/CLI names, Git outcome,
+compatibility fallbacks, temporary cache use, and check results. Distinguish
+passed, failed, blocked before execution, and not attempted; never report an
+unexecuted operation as a failure. Fix scaffold defects without changing the
+canonical baseline merely to make a check pass.
 
 ## Boundaries
 
-Do not create any of the following unless the user explicitly requests them:
-
-- `AGENTS.md` or `CONTEXT.md`
-- ADRs, specifications, README files, or licenses
-- CI/CD, Docker, environment files, Git hooks, or release/version/tagging workflows beyond `0.0.1`
-- Publishing configuration or publishing processes
-- Web or application frameworks, databases, workspace/monorepo configuration, coverage tooling, or extra task runners
-- A project `debugpy` dependency
+Do not add project guidance, ADRs, specifications, README files, licenses, CI/CD,
+Docker, environment files, Git hooks, publishing or release tooling, frameworks,
+databases, workspace configuration, coverage tooling, or extra task runners.
+Use Ruff for formatting and linting, mypy for typing, and pytest for tests.
+Do not substitute another checker or add Black, isort, Flake8, tox, nox, Make,
+or just. Create only `.vscode/launch.json` for editor integration; do not add
+settings, extension recommendations, source maps, or a project debugpy dependency.
+The root executable `check.sh` remains the project's visible quality gate.

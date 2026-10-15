@@ -89,7 +89,7 @@ Locally installed Node LTS through nvm, pnpm, ESM, TypeScript, linting, formatti
 
 `$scaffold-python Scaffold this directory as a Python application.`
 
-CPython via uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. Run `./check.sh` for validation.
+Locally installed final CPython through uv, packaged `src/` layout, Ruff, mypy, pytest, and VS Code debugging. An agent resolves compatible tools; bundled assets and a generator create and verify the baseline. Run `./check.sh` for validation.
 
 Both scaffolds target plain applications rather than framework-specific projects.
 
