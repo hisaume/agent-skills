@@ -10,6 +10,18 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
 
   Creates, adopts, or reconciles minimal source-code scaffolding to guide implementation structure without prescribing the complete solution. Distinguishes fixed anchors from provisional suggestions and preserves project-scoped guidance across agent sessions. Optional, and separate from implementation and specification workflows.
 
+- ### Planned feature briefing
+
+  `$feature-brief Present the planned session-expiry change before implementation.`
+
+  Presents the intended behaviour, scope, affected components, and completion conditions of an already-planned application change. Stops early if material high-level decisions are missing. Read-only; does not restart planning or implement the feature.
+
+- ### Implementation briefing (experimental)
+
+  `$implementation-brief Present the likely function and module boundaries for the planned import feature.`
+
+  Explores the expected internal implementation structure, including responsibilities, state ownership, defaults, and test seams. Separates established constraints, provisional proposals, and decisions left for coding. Read-only; incomplete implementation details may exist.
+
 ## Debugging
 
 - ### Isolated code probing and debugger handoff
