@@ -39,8 +39,8 @@ project guidance and source. Reconcile and retire guidance as the code evolves.
 This is an **optional implementation-design aid**, not a replacement for
 specifications, tests, or delivery workflows. Existing contracts outrank the
 scaffold. User-confirmed anchors are binding; suggested private structure can
-change. It does not automatically invoke or modify a project-local
-`application-delivery` workflow.
+change. It does not automatically invoke or modify other skills or delivery
+workflows.
 
 ## Files
 

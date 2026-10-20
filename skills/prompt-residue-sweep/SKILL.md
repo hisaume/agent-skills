@@ -35,6 +35,9 @@ Look for traces of the drafting process that do not help the intended reader:
 - Instructions about editing, expanding, or organizing the artifact embedded in
   instructions for using it. Flag these when artifact maintenance is outside the
   section’s purpose; preserve them in explicit maintenance guidance.
+- References to specific people, products, tools, or workflows carried over from
+  the drafting discussion when the underlying guidance is general. Preserve
+  names where genuine dependencies or compatibility requirements exist.
 
 Normally keep it if it passes the reader test:
 
