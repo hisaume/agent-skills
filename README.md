@@ -1,25 +1,14 @@
-# Reusable Agent Skills
+# Agent Skills
 
 Intended to live in `~/.agents/skills/` and can be invoked from compatible coding agents using `$skill-name`. Individual projects generally do not need copies of these skills.
 
-## Skill development
+## Implementation guidance
 
-- ### Agent Skill architecture and review
-  - Supports three operations: Create, Review, and Refine.
+- ### Implementation seeding
 
-    Create:
+  `$implementation-seeding Seed the folder-scanning feature with a few cohesive function boundaries.`
 
-    `$skill-architect Create a reusable skill for database migration reviews.`
-
-    Review:
-
-    `$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
-
-    Refine:
-
-    `$skill-architect Refine edge-case-analysis based on the review findings.`
-
-  - Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
+  Creates, adopts, or reconciles minimal source-code scaffolding to guide implementation structure without prescribing the complete solution. Distinguishes fixed anchors from provisional suggestions and preserves project-scoped guidance across agent sessions. Optional, and separate from implementation and specification workflows.
 
 ## Debugging
 
@@ -55,6 +44,25 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
   `$prompt-residue-sweep Review this README.md for conversational residue. Report findings only.`
 
   Identifies drafting or conversational residue in finished prose, documentation, and code comments. Reports exact excerpts and minimal corrections without modifying files.
+
+## Skill development
+
+- ### Agent Skill architecture and review
+  - Supports three operations: Create, Review, and Refine.
+
+    Create:
+
+    `$skill-architect Create a reusable skill for database migration reviews.`
+
+    Review:
+
+    `$skill-architect Review edge-case-analysis for maintainability and guardrails. Do not modify it.`
+
+    Refine:
+
+    `$skill-architect Refine edge-case-analysis based on the review findings.`
+
+  - Evaluates skill structure, responsibilities, guardrails, documentation hygiene, portability, and maintenance cost. Prefers minimal changes and accepts "no change needed" as a valid outcome.
 
 ## Project setup
 
