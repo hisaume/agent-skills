@@ -1,9 +1,5 @@
 # Cross-project Agent Conventions
 
-## Artifact handoff
-
-When producing human-readable prose in finished artifacts (code comments, documentation, essays, skills, etc.), write for its intended future reader, not for the conversation that produced it. Incorporate planning decisions without narrating the planning process. Remove conversational residue, self-referential commentary, and explanations of why content was included or structured a certain way, unless that rationale is genuinely useful to the artifact's reader. Before finalizing, review the artifact for such residue and remove or rewrite it.
-
 ## Edge-case documentation
 
 - Use `docs/quality/edge-cases.md` as the canonical register of material edge cases within each project. Do not modify .gitignore for this file.
