@@ -34,7 +34,7 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
 
   `$code-probe handoff on compare()`
 
-  Creates minimal, disposable harnesses with adjustable inputs and dependency isolation. Auto-probe investigates suspected behaviour; handoff prepares a VS Code debugging entry point without executing behavioural checks or setting breakpoints. Language-independent and adapted to existing project tooling.
+  Creates minimal, disposable harnesses with adjustable inputs and dependency isolation. Auto-probe investigates suspected behaviour; handoff prepares a VS Code debugging entry point without executing behavioural checks. Language-independent and adapted to existing project tooling.
 
 ## Quality analysis
 

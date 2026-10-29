@@ -24,7 +24,7 @@ $code-probe handoff on compare(), using a folder source and two target files.
 
 ## What it produces
 
-- A small, disposable harness calling the real target implementation.
+- A repeatable entry point calling the real target implementation, usually in a small, disposable harness.
 - Adjustable inputs and fake dependency responses grouped near the top of the harness.
 - In auto-probe mode, observations and hypothesis findings.
 - In handoff mode, a named debugger launch configuration (where appropriate) and start instructions.
@@ -34,7 +34,7 @@ The skill selects among direct scripts, REPL evaluation, existing test runners, 
 ## Boundaries
 
 - **No automatic breakpoints.** Set them yourself in VS Code.
-- **No unnecessary production changes.** Existing dependency seams and runtime tools are preferred.
+- **No application source edits in either mode.** Use existing entry points or disposable harnesses. If isolation requires a source change, the skill explains the obstacle and proposed change for a separate user decision. Scratch files and debugger launch configurations remain part of the workflow.
 - **No unapproved dependency installation or tracked configuration changes.** Existing `launch.json` entries are preserved; permission is required before altering a tracked one.
 - **No automatic regression-test promotion.** Harnesses are disposable, but retained long enough for manual debugging or reuse.
 - **Preserve existing handoffs.** Manual scenario edits and unrelated launch entries are retained. Malformed launch files receive a separate configuration snippet instead of being overwritten.
