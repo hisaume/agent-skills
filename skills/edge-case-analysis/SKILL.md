@@ -115,14 +115,26 @@ Only admit a finding when it has:
 Reject or consolidate arbitrary, implausible, redundant or
 purely hypothetical cases without meaningful consequences.
 
+Exclude routine workflow improvements, ordinary requirements,
+and test arrangements unless they expose a consequential
+failure mechanism. A process rule or a test's existence alone
+is not an edge case.
+
+Consolidate scenarios only when they share a safeguard and
+verification path and can usefully have the same status.
+Keep cases separate when causes or recovery paths require
+different treatment or one can remain open independently.
+
 Uncertain but potentially severe cases may be retained when
 there is a credible mechanism worth investigating.
 
 ### Risk and confidence
 
-Assign risk and confidence separately.
+Assign risk based on the consequence, not the amount of
+documentation or testing involved.
 
 Risk:
+
 - **High:** Security, privacy, material cost, data integrity,
   major availability or critical correctness failures.
 - **Medium:** Meaningful functional errors or recoverability
@@ -132,11 +144,15 @@ Risk:
 Confidence expresses the strength of evidence supporting the
 proposed triggering scenario.
 
-Use High, Medium or Low for each. Do not invent numerical
+Record confidence as High, Medium or Low only when uncertainty
+would affect a decision or investigation. Omit it otherwise;
+preserve useful existing assessments. Do not invent numerical
 failure probabilities.
 
-Prefer high- and medium-value findings. Low-value cases
-should normally be omitted or consolidated.
+Prefer consequential findings, but do not use the risk label
+alone as an admission filter. Blocked user actions, recurring
+regressions and important accepted tradeoffs may merit a case
+even when rated Low. Omit ordinary cosmetic polish.
 
 ### Prioritisation and stopping
 
@@ -181,7 +197,11 @@ Maintain the project-local register:
 - Do not delete unresolved risks to make coverage appear
   more complete.
 - Record trigger, impact, expected behaviour, evidence,
-  risk, confidence, status and verification reference.
+  risk, status and verification reference. Add confidence
+  only when useful uncertainty needs to be recorded.
+- Keep expected behaviour to the minimum observable safeguard
+  for the trigger. Put implementation details in linked
+  specifications or evidence unless essential to the contract.
 - Distinguish established expectations from proposals and
   unresolved decisions.
 - Link to specifications, issues and tests rather than
@@ -193,7 +213,7 @@ Maintain the project-local register:
   assumptions, applicability or expected behaviour.
 - **Open:** Applicable finding requiring action or verification.
 - **Covered:** Expected behaviour supported by relevant
-  verification evidence, not merely a related test reference.
+  verification evidence across the full stated scope.
 - **Accepted:** Risk explicitly accepted by the developer;
   preserve the decision and its reference.
 - **Retired:** Case no longer applicable or consolidated into
@@ -207,6 +227,17 @@ Maintain the project-local register:
 - Record known verification results or limitations.
 - Do not represent historical verification as a current run.
 - Report partial coverage precisely.
+- Keep a case Open while any applicable part of its expected
+  behaviour lacks sufficient verification, unless it qualifies
+  as Proposed, Accepted or Retired. If expectations differ,
+  split the case rather than conceal the gap.
+- Match verification to the claim: tests of a smoke-test
+  checker establish the checker's behaviour, not the deployed
+  system's behaviour. Live checks are needed only when the
+  stated expectation requires deployment evidence.
+- Make evidence independently understandable: link a locatable
+  record or describe the concrete observation. Avoid unexplained
+  references to original trials, run numbers or prior discussions.
 - Keep executable validations in the project's normal test
   suite, not in the register.
 - Not every admitted case requires a new test; some require
@@ -238,3 +269,5 @@ Before completion:
 
 Keep reporting concise. Do not reproduce the entire register
 in the response.
+
+Conform to existing .gitignore rules in the local repository. Do not change .gitignore for `edge-cases.md` files.

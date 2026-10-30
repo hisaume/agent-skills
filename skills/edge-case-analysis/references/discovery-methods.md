@@ -1,4 +1,3 @@
-
 # Edge-Case Discovery Methods
 
 Use this guide during discovery and reconciliation.
@@ -134,7 +133,8 @@ Assess risk using:
 - Recoverability.
 - Existing safeguards.
 
-Assess confidence separately using the available evidence.
+Assess confidence separately using the available evidence;
+record it only when uncertainty affects a decision or investigation.
 
 Do not invent numerical failure probabilities.
 
@@ -144,6 +144,13 @@ Reject or consolidate scenarios that are:
 - Consequence-free or merely cosmetic.
 - Based on unsupported chains of assumptions.
 - Unactionable without a meaningful investigation path.
+- Routine process rules or test arrangements without a
+  consequential failure mechanism.
+
+Low risk alone does not exclude a useful case: blocked user
+actions, recurring regressions and important accepted tradeoffs
+can warrant inclusion. Keep the expected behaviour focused on
+the observable safeguard rather than implementation detail.
 
 Retain uncertain but potentially severe scenarios only
 when there is a credible mechanism worth investigating.
@@ -181,8 +188,12 @@ Compare each in-scope finding with:
 Then:
 - Add genuinely missing findings.
 - Merge duplicates without losing important references.
+- Consolidate only when safeguards, verification and status
+  can be shared; separate cases needing different treatment.
 - Update expectations when a decision is established.
-- Mark Covered only with relevant verification evidence.
+- Mark Covered only when verification supports the full
+  expected behaviour; otherwise keep confirmed, applicable
+  cases Open unless the developer has accepted the risk.
 - Mark Retired only when the condition no longer applies.
 - Preserve historical IDs and meaningful decisions.
 - Do not delete unresolved risks to make coverage appear
@@ -192,6 +203,13 @@ Distinguish test existence from a passing test run.
 
 Report partial coverage precisely rather than treating a
 related test as full coverage.
+
+Tests of verification machinery establish that machinery's
+behaviour, not the system it checks. Require deployment
+evidence only for expectations that depend on deployment.
+
+Link locatable evidence or describe the concrete observation;
+avoid unexplained trial numbers and experiment shorthand.
 
 ## 7. Efficiency rule
 
