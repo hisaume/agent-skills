@@ -51,10 +51,10 @@ Report any compatibility fallback instead of silently weakening checks.
 
 Write a temporary JSON input file outside the project with exactly these fields:
 
-| Field | Value |
-|---|---|
-| `python` | Selected exact final version, such as `3.14.6` |
-| `uv_build` | Resolved exact stable backend version |
+| Field          | Value                                                                          |
+| -------------- | ------------------------------------------------------------------------------ |
+| `python`       | Selected exact final version, such as `3.14.6`                                 |
+| `uv_build`     | Resolved exact stable backend version                                          |
 | `dependencies` | Object with exactly `mypy`, `pytest`, and `ruff`, each an exact stable version |
 
 Version numbers are resolved inputs, not defaults to copy from this document.
@@ -87,6 +87,9 @@ Do not pass `--no-install-project`, `--no-editable`, or bypass lock verification
 If resolution fails, diagnose within the stated constraints. If changing resolved
 inputs after generation is necessary, report the scaffold as incomplete rather
 than editing canonical files around the generator's preservation rule.
+
+In pyproject.toml under [tool.mypy], set `python_version = ""` to the major.minor
+version of the Python interpreter used in this scaffold (for example "3.14").
 
 ## 4. Verify and report
 

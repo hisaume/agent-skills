@@ -19,6 +19,7 @@ select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
 
 [tool.mypy]
 strict = true
+python_version = ""
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
