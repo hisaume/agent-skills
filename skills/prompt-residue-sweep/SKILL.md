@@ -24,6 +24,8 @@ perform a general prose review or rewrite.
 
 Look for traces of the drafting process that do not help the intended reader:
 
+### Simple cases
+
 - References to the user's request, a previous answer, model behaviour, or
   earlier iterations (for example, "as discussed" or "I added this because").
 - Explanations of why a section, format, or approach was chosen during drafting,
@@ -38,6 +40,36 @@ Look for traces of the drafting process that do not help the intended reader:
 - References to specific people, products, tools, or workflows carried over from
   the drafting discussion when the underlying guidance is general. Preserve
   names where genuine dependencies or compatibility requirements exist.
+
+### Complex cases
+
+- Correct content with residual framing:
+  A technically correct passage may still contain residue when its
+  framing answers a drafting concern rather than serving the intended reader.
+  - Look for unnecessary reassurance, contrasts, or explanations attached
+    to otherwise useful requirements.
+  - Distinguish the enduring information or requirement from its conversational framing.
+    Preserve the requirement; remove or rephrase only the residue.
+  - Do not flag legitimate explanations, compatibility constraints, or
+    design rationale merely because they provide context.
+
+- Unwarranted requirements:
+  Look for explanations, caveats, or technical facts from the drafting
+  discussion that have been presented as requirements or design decisions
+  without a clear purpose in the finished artifact.
+  - Distinguish established decisions from background knowledge,
+    implementation consequences, and end-user guidance.
+  - Preserve genuine constraints and decisions. Remove or relocate
+    material that does not serve the artifact's intended purpose.
+  - Do not infer new requirements merely to justify retaining a passage.
+  - Check for redundant prohibitions or precautions that merely restate
+    established responsibilities or pre-empt unlikely alternatives. Where
+    such wording expresses a useful requirement or operational
+    consequence, prefer stating it directly in a neutral tone. Flag only
+    when the negative framing lacks an independent architectural,
+    operational, or safety purpose and appears to reflect drafting residue.
+
+### General guidance
 
 Normally keep it if it passes the reader test:
 
@@ -57,9 +89,10 @@ the finding rather than inventing a stylistic problem.
 1. Admit only high-confidence residue with a clear, local fix.
 2. Select the shortest exact source span that identifies the issue; include a
    full sentence only when a shorter excerpt would be ambiguous.
-3. Prefer deletion when the surrounding text already states the useful content.
-   Otherwise suggest the smallest replacement that preserves intended meaning,
-   grammar, technical accuracy, and the author's voice.
+3. Prefer deletion when the surrounding text already states the useful
+   content. Otherwise suggest the smallest coherent replacement,
+   including adjacent sentences when necessary, that preserves useful
+   meaning, technical accuracy, and the author's voice.
 4. Do not propose section rearrangements, broad paraphrasing, added content,
    terminology changes, or rewrites of unrelated passages.
 5. Combine overlapping findings. Stop when further findings become speculative,
@@ -80,3 +113,5 @@ Do not modify files by default. Only apply the listed, localised corrections
 when the user explicitly requests edits; leave all other text and formatting
 unchanged. Do not create reports, backups, scripts, or auxiliary files unless
 requested.
+
+Optionally note consequential borderline passages deliberately retained, with a brief rationale, separately from confirmed findings.

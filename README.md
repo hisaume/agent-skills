@@ -38,6 +38,12 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
 
 ## Quality analysis
 
+- ### Prompt-residue sweep
+
+  `$prompt-residue-sweep Review this README.md for conversational residue. Report findings only.`
+
+  Identifies drafting or conversational residue in finished prose, documentation, and code comments. Reports exact excerpts and minimal corrections without modifying files.
+
 - ### Edge-case discovery and reconciliation
   - Defines two distinct modes of operation: discovery and reconciliation.
 
@@ -50,12 +56,6 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
   `$edge-case-analysis Reconcile edge cases in this feature with the project-local register.`
 
   Identifies meaningful failure scenarios during planning or maintenance. Maintains a project-local `docs/quality/edge-cases.md` register linked to specifications and executable tests.
-
-- ### Prompt-residue sweep
-
-  `$prompt-residue-sweep Review this README.md for conversational residue. Report findings only.`
-
-  Identifies drafting or conversational residue in finished prose, documentation, and code comments. Reports exact excerpts and minimal corrections without modifying files.
 
 ## Skill development
 

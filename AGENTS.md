@@ -14,6 +14,12 @@ levels unless explicitly requested.
 Respect explicit project requirements and distinguish
 them from preferences, open decisions, and examples.
 
+## All human-readable documentation
+
+Prefer describing responsibilities positively. State
+exclusions explicitly when they clarify genuine
+ambiguity or enforce meaningful constraints.
+
 ## Code conventions
 
 - Unless otherwise specified in a local style guide, follow these conventions:
