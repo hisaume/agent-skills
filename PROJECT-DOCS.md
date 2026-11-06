@@ -61,6 +61,12 @@ All four levels need not be represented as separate files.
 - L4 may be omitted entirely or limited to individual modules, functions or concerns.
 - Larger projects may extract sections into separate documents when their size or maintenance requirements justify it.
 
-A useful default is to begin with a small number of documents and expand only where necessary.
+It may begin small and expand only where necessary. Its intended goal is sufficient specification for the project, not completion of a prescribed documentation hierarchy.
 
-The goal is sufficient specification for the project, not completion of a prescribed documentation hierarchy.
+## Document lifecycle
+
+- L1–L4 are living specifications representing the currently intended design. They may be updated in place as requirements and decisions evolve.
+- Missing documents need not be introduced.
+- Typically, Git may preserve historical revisions.
+- Versioned document folders may optionally exist. Later versions supersede earlier ones, but the earlier versions may remain available for reference.
+- Significant decisions may be recorded separately, including their rationale and subsequent supersession.

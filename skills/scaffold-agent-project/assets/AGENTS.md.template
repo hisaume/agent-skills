@@ -2,6 +2,12 @@
 
 ## Sources of truth
 
+Project design documents reside in `docs/design/`:
+- Read PROJECT.md and DESIGN.md (optionally prefixed with L1- or L2-) 
+  for project intent and architecture.
+- Consult COMPONENTS.md and IMPLEMENTATION.md (optionally prefixed with L3- or L4-)
+  when relevant to the work.
+
 - Use the terminology and domain invariants in `CONTEXT.md` when they apply.
 - Read relevant ADRs under `docs/adr/` and the specification index at
   `docs/specs/README.md` before changing consequential behaviour.
