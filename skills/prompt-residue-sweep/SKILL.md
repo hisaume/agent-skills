@@ -69,7 +69,9 @@ Look for traces of the drafting process that do not help the intended reader:
     when the negative framing lacks an independent architectural,
     operational, or safety purpose and appears to reflect drafting residue.
 
-### General guidance
+### Useful Boundary Tests
+
+#### Reader Test
 
 Normally keep it if it passes the reader test:
 
@@ -83,6 +85,14 @@ imperfect. Preserve useful design rationale, meaningful operational constraints,
 explicit decision records, legitimate authorial voice, quotations, examples, and
 texts about prompting where such language is the subject. When uncertain, omit
 the finding rather than inventing a stylistic problem.
+
+#### Redundancy Test
+
+Examine negative constraints, exclusions, precautions and scope limitations for unnecessary specification.
+
+Apply a counterfactual deletion test: would removing the statement permit a materially different, reasonable interpretation or implementation?
+
+Flag statements that merely negate behaviour already excluded by the positive requirements, repeat established component responsibilities, or preempt unspecified future features without establishing a meaningful boundary. Preserve constraints that resolve genuine ambiguity, establish deliberate scope decisions, or protect correctness, security or operational reliability.
 
 ## 3. Propose minimal corrections
 
