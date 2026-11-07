@@ -17,7 +17,7 @@ SETUP_BEADS_SCRIPT = (
 )
 TARGETS = {
     "AGENTS.md": "AGENTS.md.template",
-    "CONTEXT.md": "CONTEXT.md.template",
+    "GLOSSARY.md": "GLOSSARY.md.template",
     "docs/specs/README.md": "specs-README.md.template",
     ".agents/skills/application-delivery/SKILL.md": "application-delivery-SKILL.md.template",
     ".agents/skills/application-delivery/references/workflow.md": "workflow.md.template",

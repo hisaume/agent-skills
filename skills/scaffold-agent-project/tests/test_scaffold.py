@@ -93,7 +93,7 @@ class ScaffoldTests(unittest.TestCase):
                 self.target.symlink_to(outside, target_is_directory=True)
             for options in [("--dry-run",), ()]:
                 self.assertNotEqual(self.run_scaffold(*options)[0], 0)
-            self.assertFalse((self.target / "CONTEXT.md").exists())
+            self.assertFalse((self.target / "GLOSSARY.md").exists())
             if outside.exists():
                 self.assertEqual(list(outside.iterdir()), [])
 
@@ -127,7 +127,7 @@ class ScaffoldTests(unittest.TestCase):
 
         def open_with_race(path, mode="r", *args, **kwargs):
             nonlocal raced
-            if mode == "x" and path.name == "CONTEXT.md" and not raced:
+            if mode == "x" and path.name == "GLOSSARY.md" and not raced:
                 raced = True
                 with real_open(path, "w") as stream:
                     stream.write("concurrent content")
@@ -136,10 +136,12 @@ class ScaffoldTests(unittest.TestCase):
         with patch.object(Path, "open", open_with_race):
             status, _, error = self.run_scaffold()
         self.assertEqual(status, 1)
-        self.assertEqual((self.target / "CONTEXT.md").read_text(), "concurrent content")
+        self.assertEqual(
+            (self.target / "GLOSSARY.md").read_text(), "concurrent content"
+        )
         self.assertIn("Created entries", error)
         self.assertIn("AGENTS.md", error)
-        self.assertIn("Not created: CONTEXT.md", error)
+        self.assertIn("Not created: GLOSSARY.md", error)
         self.assertNotIn("Traceback", error)
 
     def test_with_beads_implies_beads_and_reports_failed_delegation(self):

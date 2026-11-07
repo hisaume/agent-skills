@@ -12,7 +12,7 @@ their individual procedures.
 ## Read what the task needs
 
 1. Read `AGENTS.md`.
-2. Read `CONTEXT.md` when domain vocabulary or invariants matter.
+2. Read `GLOSSARY.md` when domain vocabulary or invariants matter.
 3. Read relevant ADRs and `docs/specs/README.md` before changing consequential
    behaviour.
 4. {{TRACKER_ROUTE}}

@@ -70,6 +70,6 @@ retain those planning steps and all changes retain relevant validation.
 
 ## Resulting layout
 
-The scaffold creates `AGENTS.md`, `CONTEXT.md`, `docs/specs/README.md`, and the
+The scaffold creates `AGENTS.md`, `GLOSSARY.md`, `docs/specs/README.md`, and the
 project-local `application-delivery` skill with its workflow reference. Read
 [the layout reference](references/layout.md) when assessing the generated files.

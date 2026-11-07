@@ -3,7 +3,7 @@
 ```text
 project/
 ├── AGENTS.md
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── .agents/skills/application-delivery/
 │   ├── SKILL.md
 │   └── references/workflow.md
@@ -15,7 +15,7 @@ project/
 commands, non-obvious invariants, and delivery authority. It is not a workflow
 manual.
 
-`CONTEXT.md` holds domain vocabulary and invariants. Delete it only if the
+`GLOSSARY.md` holds domain vocabulary and invariants. Delete it only if the
 project has no durable domain language worth preserving.
 
 `application-delivery` is the reusable, on-demand project workflow. Its
