@@ -64,7 +64,7 @@ def template_values(project_name: str, tracker: str) -> dict[str, str]:
         return {
             "PROJECT_NAME": project_name,
             "TRACKER_BOUNDARY": "Keep durable state in Beads; temporary execution notes are not a project tracker.",
-            "TRACKER_NOTE": "Beads is selected for durable work; selection alone does not initialize it. Run `bd prime` to confirm initialization before tracker operations; do not use markdown TODO files as the project tracker.",
+            "TRACKER_NOTE": "Use Beads for durable work. Run bd prime to verify availability before tracker operations; do not use Markdown TODO files as the project tracker.",
             "TRACKER_ROUTE": "For durable Beads work, read `references/workflow.md`.",
             "WORKFLOW_TITLE": "Beads workflow",
             "TRACKER_STEPS": "1. Run `bd prime`.\n2. Find work with `bd ready`, inspect it with `bd show <id>`, and claim it with `bd update <id> --claim`.\n3. Record follow-up work and dependencies in Beads.\n4. Close an issue only after its repository-defined completion and integration gates pass.",
