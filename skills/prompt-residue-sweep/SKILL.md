@@ -88,7 +88,7 @@ the finding rather than inventing a stylistic problem.
 
 #### Redundancy Test
 
-Examine negative constraints, exclusions, precautions and scope limitations for unnecessary specification.
+Examine negative constraints, exclusions, precautions, scope limitations, and statements, including descriptions of what an artifact does not do, for unnecessary specification. Check whether they serve the intended reader or merely address concerns carried over from drafting.
 
 Apply a counterfactual deletion test: would removing the statement permit a materially different, reasonable interpretation or implementation?
 
