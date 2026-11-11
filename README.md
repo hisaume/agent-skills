@@ -39,17 +39,17 @@ Intended to live in `~/.agents/skills/` and can be invoked from compatible codin
 
 ## Implementation guidance
 
+- ### Scaffolding as context
+
+  `$scaffolding-as-context Seed the import module with fixed interfaces.`
+
+  Creates, adopts, consumes, and reconciles partial source scaffolds. Distinguishes contractual code from advisory guidance.
+
 - ### Planned feature briefing
 
   `$feature-brief Present the planned session-expiry change before implementation.`
 
   Presents the intended behaviour, scope, affected components, and completion conditions of an already-planned application change. Stops early if material high-level decisions are missing. Read-only; does not restart planning or implement the feature.
-
-- ### Implementation seeding (experimental)
-
-  `$implementation-seeding Seed the folder-scanning feature with a few cohesive function boundaries.`
-
-  Creates, adopts, or reconciles minimal source-code scaffolding to guide implementation structure without prescribing the complete solution. Distinguishes fixed anchors from provisional suggestions and preserves project-scoped guidance across agent sessions. Optional, and separate from implementation and specification workflows.
 
 - ### Implementation briefing (experimental)
 
