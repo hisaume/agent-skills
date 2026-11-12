@@ -3,7 +3,7 @@
 ## Sources of truth
 
 Project design documents reside in `docs/design/`:
-- Read PROJECT.md and DESIGN.md (optionally prefixed with L1- or L2-) 
+- Read PROJECT.md and DESIGN.md (optionally prefixed with L1- or L2-)
   for project intent and architecture.
 - Consult COMPONENTS.md and IMPLEMENTATION.md (optionally prefixed with L3- or L4-)
   when relevant to the work.
@@ -28,7 +28,6 @@ quality gate; do not invent commands or treat missing checks as passing.
 
 ## Delivery authority
 
-- {{TRACKER_NOTE}}
 - Do not commit, push, open pull requests, or synchronize an external tracker
   unless the user explicitly authorizes those actions. Authorization already
   given for the current task remains valid.
